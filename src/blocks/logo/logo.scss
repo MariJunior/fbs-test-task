@@ -1,0 +1,15 @@
+// В этом файле должны быть стили для БЭМ-блока logo, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-выражений etc.
+
+.logo {
+  display: inline-block;
+
+  vertical-align: baseline;
+  white-space: nowrap;
+
+  $block-name: &; // #{$block-name}__element
+
+  img {
+    display: block;
+  }
+}

@@ -1,0 +1,13 @@
+// Подключение шрифтов.
+
+/* stylelint-disable */
+@font-face {
+  font-weight: 400;
+  font-family: "FONTNAME";
+  font-style: normal;
+
+  font-display: swap;
+  src: local("FONTNAME"),
+  url("../fonts/FONTNAME.woff2") format("woff2"),
+  url("../fonts/FONTNAME.woff") format("woff");
+}

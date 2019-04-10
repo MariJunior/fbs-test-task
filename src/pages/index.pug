@@ -1,0 +1,114 @@
+extends ../pug/layout.pug
+
+block meta
+  title Главная
+  meta(name='description', content='')
+
+//- block append head
+//-   link(rel='stylesheet', href='css/some.css')
+
+block nav
+  +main-nav('0')
+
+block content
+  main.container
+    h1.page__title Тестовое задание
+
+    section.products
+      h2.products__title Сетка
+      .products__list
+        +card({
+          url: 'good01',
+          img: 'img/demo-product.jpg',
+          name: 'Товар1',
+          descr: 'Описание1',
+          price: 1111,
+          new: true
+        })(class='products__item')
+        +card({
+          url: 'good02',
+          img: 'img/demo-product.jpg',
+          name: 'Товар2',
+          descr: 'Описание2',
+          price: 2222
+        })(class='products__item')
+        +card({
+          url: 'good03',
+          img: 'img/demo-product.jpg',
+          name: 'Товар3',
+          descr: 'Описание3',
+          price: 3333
+        })(class='products__item')
+        +card({
+          url: 'good04',
+          img: 'img/demo-product.jpg',
+          name: 'Товар4',
+          descr: 'Описание4',
+          price: 4444
+        })(class='products__item')
+
+    section.test-task-section
+      h2.test-task-section__title JS
+
+      +form()(action='#', method='post', data-check-form='true', class='form-for-js__form')
+        +fieldset('Заполните данные')
+          +field-select(
+            'Название',
+            {
+              name: 'select',
+              id: 'select',
+              required: true
+            },
+            [
+              {
+                title: 'Опция1',
+                attrs: {
+                  value: 'value-1',
+                }
+              },
+              {
+                title: 'Опция2',
+                attrs: {
+                  value: 'value-2',
+                }
+              },
+              {
+                title: 'Опция3',
+                attrs: {
+                  value: 'value-3',
+                }
+              }
+            ]
+          )
+          +field-text({
+            title: 'Имя',
+            helpText: 'Не менее 3-х символов. Обязательно.',
+            attrs: {
+              type: 'text',
+              name: 'name',
+              id: 'name',
+              required: true,
+              'data-check-pattern': '^[a-zа-яё]+.{2,}'
+            }
+          })
+          +field-checkbox([
+            {
+              title: 'Должен быть отмечен',
+              helpText: 'Иначе всё - тлен!',
+              attrs: {
+                name: 'check',
+                id: 'check',
+                required: 'required',
+                class: 'visually-hidden',
+                'data-check-state': 'on'
+              }
+            },
+          ])
+          .form__text.visually-hidden Текст вместо чекбокса, который был скрыт до поры
+        +btn('Отправить')(type='submit')
+
+//- block footer
+//-   p footer
+
+//- block append page-bottom
+//-   script(src='js/test-script.js')

@@ -1,0 +1,188 @@
+// В этом файле должны быть стили для БЭМ-блока field-select, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-выражений etc.
+
+.field-select {
+  $block-name: &; // #{$block-name}__element
+
+  display: block;
+  width: 250px;
+  margin-bottom: $typo-margin-vertical;
+
+  &__name {
+    @include field-name;
+  }
+
+  // Оформление штатного селекта
+  &__select {
+    display: inline-block;
+    vertical-align: middle;
+    padding: $field-padding-vertical $field-padding-horizontal;
+    padding-right: 35px;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: $line-height;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: #fff;
+    appearance: none;
+
+    &[multiple] {
+      background-image: none;
+      min-height: 6.8em;
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:active,
+    &:focus {
+      @include field-focus;
+    }
+
+    &[disabled],
+    &[readonly] {
+      cursor: default;
+      background-color: $gray-lightest;
+    }
+  }
+
+  &__help-text {
+    @include field-help-text;
+  }
+
+  &--error {
+    color: $color-danger;
+
+    #{$block-name}__name,
+    #{$block-name}__select,
+    #{$block-name}__help-text {
+      color: $color-danger;
+    }
+
+    #{$block-name}__select,
+    .choices__inner,
+    .choices:after {
+      background-color: lighten($color-danger, 35%);
+      border-color: $color-danger;
+    }
+  }
+}
+
+/** @define choices */
+.choices {
+  position: relative;
+
+  $block-name: &; // #{$block-name}__element
+
+  &:focus {
+    outline: 0;
+
+    &:not(.is-disabled) {
+
+      #{$block-name}__inner {
+        @include field-focus;
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    right: 16px;
+
+    width: 14px;
+    height: 14px;
+
+    border-bottom: 1px solid $border-color;
+    border-left: 1px solid $border-color;
+    transform: rotate(-45deg);
+
+    transition: all 0.3s;
+
+    pointer-events: none;
+  }
+
+  &.is-open:after {
+    transform: translateY(7px) rotate(135deg);
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  &__inner {
+    padding: $field-padding-vertical 40px $field-padding-vertical $field-padding-horizontal;
+
+    font-size: 1em;
+    line-height: 1.5;
+
+    background: #ffffff;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    #{$block-name}__item--selectable {
+      max-width: 100%;
+      overflow: hidden;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__list--dropdown {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+
+    display: none;
+    width: 100%;
+    margin-top: -1px;
+    overflow: hidden;
+
+    word-break: break-all;
+
+    background-color: #ffffff;
+    border: 1px solid $border-color;
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+
+    #{$block-name}__item {
+      padding: $field-padding-vertical $field-padding-horizontal;
+
+      cursor: pointer;
+
+      &.is-highlighted {
+        background: $gray-lightest;
+      }
+    }
+  }
+
+  &__heading {
+    padding: $field-padding-vertical $field-padding-horizontal;
+
+    font-weight: 700;
+    font-size: $font-size-sm;
+
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &.is-open {
+
+    #{$block-name}__list--dropdown {
+      display: block;
+    }
+  }
+
+  &.is-disabled {
+
+    #{$block-name}__inner {
+      background-color: $gray-lighter;
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+// В этом файле должны быть стили для БЭМ-блока products, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-выражений etc.
+
+.products {
+  $block-name:                &; // #{$block-name}__element
+
+  outline: 3px dashed $color-success;
+
+  &__title {
+    padding-left: 3rem;
+    font-size: $font-size-h2;
+    color: $text-color-contrast;
+  }
+
+  &__list {
+    // это прямой родитель сетки, margin по умолчанию (из переменной)
+    @include row( 20px, 20px, 20px, 20px, 20px, 20px );
+  }
+
+  &__item {
+    @include col(xs, 3);
+
+    min-width: 200px;
+  }
+}

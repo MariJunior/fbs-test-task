@@ -1,0 +1,29 @@
+// В этом файле должны быть стили для БЭМ-блока form-for-js, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-выражений etc.
+
+.test-task-section {
+  $block-name: &; // #{$block-name}__element
+
+  margin: 2.5rem 0;
+  padding: 1rem;
+
+  border: 2px dashed $gray-lighter;
+
+  @media (min-width: $screen-md) {
+    padding: 1rem 2rem 1rem 3rem;
+  }
+
+  &__title {
+    font-size: $font-size-h2;
+    color: $text-color-contrast;
+  }
+
+  &--grid {
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: $screen-md) {
+      padding: 0;
+    }
+  }
+}

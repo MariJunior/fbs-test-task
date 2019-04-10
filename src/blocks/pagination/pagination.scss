@@ -1,0 +1,46 @@
+// В этом файле должны быть стили для БЭМ-блока pagination, его элементов,
+// модификаторов, псевдоселекторов, псевдоэлементов, @media-выражений etc..
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $typo-margin-vertical;
+  margin-bottom: $typo-margin-vertical;
+
+  &__item {
+    display: block;
+    min-width: 2em;
+    padding: 0.3em 0.6em;
+
+    text-align: center;
+    color: $text-color;
+    // border: 1px solid $border-color;
+    text-decoration: none;
+
+    & + & {
+      border-left: 0;
+    }
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+      text-decoration: none;
+    }
+
+    @at-root a#{&} {
+
+      &:hover,
+      &:focus {
+        background-color: $gray-lightest;
+      }
+    }
+
+    @at-root span#{&} {
+      cursor: default;
+    }
+
+    &--active {
+      background-color: $gray-lightest;
+    }
+  }
+}
